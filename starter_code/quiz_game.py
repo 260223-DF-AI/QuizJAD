@@ -2,6 +2,7 @@
 # Starter code for e004-exercise-control-flow (Collaborative Project)
 
 from colorama import Fore, Style
+import random
 
 """
 Python Quiz Game
@@ -31,66 +32,82 @@ def create_question_bank():
     
     Add at least 10 questions covering Week 1 topics.
     """
+    categories = {
+        "1": "Python Basics",
+        "2": "Data Types",
+        "3": "Control Flow"
+    }
+
     questions = [
         {
             "question": "What keyword is used to define a function in Python?",
             "options": ["A) func", "B) def", "C) function", "D) define"],
             "answer": "B",
-            "explanation": "The 'def' keyword is used to define functions in Python."
+            "explanation": "The 'def' keyword is used to define functions in Python.",
+            "difficulty": "Easy"
         },
         {
             "question": "What operator allows you to add two numbers?",
             "options": ["A) +", "B) -", "C) ++", "D) *"],
             "answer": "A",
-            "explanation": "That is not how you add things. Refer to +"
+            "explanation": "That is not how you add things. Refer to +",
+            "difficulty": "Easy"
         },
         {
             "question": "How many time does this loop iterate 'for x in range(5, 0, -1)?'",
             "options": ["A) 4", "B) 17", "C) 0", "D) 5"],
             "answer": "D",
-            "explanation": "The format of for loops is (initial number, end number, step)"
+            "explanation": "The format of for loops is (initial number, end number, step)",
+            "difficulty": "Hard"
         },
         {
             "question": "How do you access a dictionary value?",
             "options": ["A) dictionary.value()", "B) dictionary.key()", "C) dictionary['key']", "D) dictionary['value']"],
             "answer": "C",
-            "explanation": "The proper syntax is dictionary['key']"
+            "explanation": "The proper syntax is dictionary['key']",
+            "difficulty": "Medium"
         },
         {
             "question": "How to initialize a tuple?",
             "options": ["A) tuple = {a, b, c}", "B) tuple = [a, b, c]", "C) tuple = (a, b, c)", "D) tuple = a + b + c"],
             "answer": "C",
-            "explanation": "The proper syntax for creating a tuple is with paranthesis"
+            "explanation": "The proper syntax for creating a tuple is with paranthesis",
+            "difficulty": "Hard"
         },
         {
             "question": "How do you check if an item is in a collection?",
             "options": ["A) in", "B) is in", "C) contains", "D) =="],
             "answer": "A",
-            "explanation": "The syntax for checking if an item is in something is 'item in collection'"
+            "explanation": "The syntax for checking if an item is in something is 'item in collection'",
+            "difficulty": "Hard"
         },
         {
             "question": "What do you use to make multi-line comment?",
             "options": ["A) #", "B) /**\ ", "C) \"\"\" ", "D) comment"],
             "answer": "C",
-            "explanation": "The others are either not in python syntax or are a comment for one line"
+            "explanation": "The others are either not in python syntax or are a comment for one line",
+            "difficulty": "Medium"
         },
         {
             "question": "What value does a function return if you don't specify?",
             "options": ["A) null", "B) None", "C) False", "D) \"\" "],
             "answer": "B",
-            "explanation": "None is the default return type"
+            "explanation": "None is the default return type",
+            "difficulty": "Medium"
         },
         {
             "question": "What are the key words for if-else statements?",
             "options": ["A) if-else if-else", "B) if-elif-el", "C) if-if not-otherwise", "D) if-elif-else"],
             "answer": "D",
-            "explanation": "You are wrong"
+            "explanation": "You are wrong",
+            "difficulty": "Easy"
         },
         {
             "question": "How do you cast a variable as an integer?",
             "options": ["A) variable.int", "B) (int)variable", "C) variable = integer.variable", "D) int(variable)"],
             "answer": "D",
-            "explanation": "Functions for casting are type(variable)"
+            "explanation": "Functions for casting are type(variable)",
+            "difficulty": "Easy"
         },
         # TODO: Add 9 more questions covering:
         # - Python syntax and indentation
@@ -131,6 +148,7 @@ def display_question(question, number, total):
     print(f"Question {number+1} of {total}")
     print("-"*30)
     print(question["question"])
+    print(f"Difficulty: {question["difficulty"]}")
     for option in question["options"]:
         print(option)
     # TODO: Implement this function
@@ -320,6 +338,7 @@ def main():
     """Main entry point for the quiz game."""
     # Create question bank
     questions = create_question_bank()
+    random.shuffle(questions)
     
     # Run the quiz
     score, total = run_quiz(questions)
