@@ -42,7 +42,7 @@ def create_question_bank():
             "question": "What operator allows you to add two numbers?",
             "options": ["A) +", "B) -", "C) ++", "D) *"],
             "answer": "A",
-            "explanation": "That is how you add things"
+            "explanation": "That is not how you add things. Refer to +"
         },
         {
             "question": "How many time does this loop iterate 'for x in range(5, 0, -1)?'",
