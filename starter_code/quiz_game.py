@@ -70,7 +70,15 @@ def display_question(question, number, total):
     C) option C
     D) option D
     """
+
+    print("-"*30)
+    print(f"Question {number} of {total}")
+    print("-"*30)
+    print(question["question"])
+    for option in question["options"]:
+        print(option)
     # TODO: Implement this function
+
     pass
 
 
@@ -85,6 +93,16 @@ def get_user_answer():
         A valid answer in uppercase (A, B, C, or D)
     """
     # TODO: Implement input validation loop
+
+    while True:
+        userInput = input("Enter Answer")
+        userInput.upper()
+    
+        if userInput  in ['A','B', 'C', 'D' ]:
+            return userInput
+        else:
+            print("Invalid Input. Enter a Valid Answer Choice")
+
     pass
 
 
@@ -100,6 +118,11 @@ def check_answer(question, user_answer):
         True if correct, False otherwise
     """
     # TODO: Compare user_answer with question["answer"]
+
+    if user_answer == question["answer"]:
+        return True
+    else:
+        return False
     pass
 
 
@@ -112,6 +135,11 @@ def display_feedback(question, user_answer, is_correct):
     Always show the explanation.
     """
     # TODO: Display appropriate feedback based on is_correct
+    if is_correct:
+        print("Correct!")
+    else:
+        print(f"incorrect. The answer was {question["answer"]}.")
+        print(question["explanation"])
     pass
 
 
