@@ -1,6 +1,8 @@
 # quiz_game.py - Python Quiz Game
 # Starter code for e004-exercise-control-flow (Collaborative Project)
 
+from colorama import Fore, Style
+
 """
 Python Quiz Game
 ----------------
@@ -190,13 +192,11 @@ def display_feedback(question, user_answer, is_correct):
     """
     # TODO: Display appropriate feedback based on is_correct
     if is_correct:
-        print("Correct!")
+        print(Fore.GREEN + "Correct!")
+        print(Style.RESET_ALL)
     else:
-        print(f"Incorrect. The answer was {question["answer"]}.")
-        print(question["explanation"])
-
-    print()
-    pass
+        print(Fore.RED + f"Incorrect. The answer was {question["answer"]}.")
+        print(Style.RESET_ALL + question["explanation"] + "\n")
 
 
 # =============================================================================
