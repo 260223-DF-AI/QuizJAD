@@ -126,7 +126,7 @@ def display_question(question, number, total):
     """
 
     print("-"*30)
-    print(f"Question {number} of {total}")
+    print(f"Question {number+1} of {total}")
     print("-"*30)
     print(question["question"])
     for option in question["options"]:
@@ -149,8 +149,8 @@ def get_user_answer():
     # TODO: Implement input validation loop
 
     while True:
-        userInput = input("Enter Answer")
-        userInput.upper()
+        userInput = input("Enter Answer: ")
+        userInput = userInput.upper()
     
         if userInput  in ['A','B', 'C', 'D' ]:
             return userInput
@@ -192,8 +192,10 @@ def display_feedback(question, user_answer, is_correct):
     if is_correct:
         print("Correct!")
     else:
-        print(f"incorrect. The answer was {question["answer"]}.")
+        print(f"Incorrect. The answer was {question["answer"]}.")
         print(question["explanation"])
+
+    print()
     pass
 
 
@@ -296,8 +298,9 @@ def display_results(score, total):
     # TODO: Calculate percentage and grade
     # TODO: Display formatted results
     # TODO: Add encouragement message
+    print()
     print (f"Score: {score}/{total}")
-    print (f"Percent: {(score/total)*100}")
+    print (f"Percent: {(score/total)*100}%")
     letter_grade = calculate_grade(score, total)
     print (f"Letter grade {letter_grade}")
     if letter_grade in ["A", "B"]:
