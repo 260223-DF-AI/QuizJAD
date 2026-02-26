@@ -2,7 +2,9 @@
 # Starter code for e004-exercise-control-flow (Collaborative Project)
 
 from colorama import Fore, Style
-import random
+from random import shuffle
+import time
+import os
 
 """
 Python Quiz Game
@@ -243,6 +245,8 @@ def run_quiz(questions):
     """
     score = 0
     total = len(questions)
+
+    shuffle(questions)
     
     # Welcome message
     print("=" * 50)
@@ -252,17 +256,25 @@ def run_quiz(questions):
     print("Enter A, B, C, or D for each question.\n")
     input("Press Enter to start...")
     
-
+    quiz_time = 0
     for index, question in enumerate(questions):
+        question_start_time = time.time()
         display_question(question, index, len(questions))
+
         user_answer = get_user_answer()
+        end_time = time.time()
+        answer_time = end_time - question_start_time
+        quiz_time += answer_time
+        
         is_correct = check_answer(question, user_answer)
         display_feedback(question, user_answer, is_correct)
+        print(f"It took you {answer_time:.2f} seconds to answer.")
         if is_correct:
             score += 1
     # TODO: Implement the game loop
     # Hint: Use a for loop with enumerate
     
+    print(f"The quiz took you {quiz_time:.2f} to complete.")
     return score, total
 
 
@@ -336,12 +348,15 @@ def display_results(score, total):
 
 def main():
     """Main entry point for the quiz game."""
+    high_score = 0
     # Create question bank
     questions = create_question_bank()
     random.shuffle(questions)
     
     # Run the quiz
     score, total = run_quiz(questions)
+    if high_score == 0 or score > high_score:
+        high_score = score
     
     # Display results
     display_results(score, total)
@@ -351,7 +366,7 @@ def main():
     if play_again.lower() in ["yes", "y"]:
         main()
     else:
-        print("\nThanks for playing! Goodbye!")
+        print(f"\nThanks for playing! Your highest quiz score was {high_score} out of {total}. Goodbye!")
 
 
 if __name__ == "__main__":
