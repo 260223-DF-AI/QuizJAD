@@ -36,6 +36,60 @@ def create_question_bank():
             "answer": "B",
             "explanation": "The 'def' keyword is used to define functions in Python."
         },
+        {
+            "question": "What operator allows you to add two numbers?",
+            "options": ["A) +", "B) -", "C) ++", "D) *"],
+            "answer": "A",
+            "explanation": "That is how you add things"
+        },
+        {
+            "question": "How many time does this loop iterate 'for x in range(5, 0, -1)?'",
+            "options": ["A) 4", "B) 17", "C) 0", "D) 5"],
+            "answer": "D",
+            "explanation": "The format of for loops is (initial number, end number, step)"
+        },
+        {
+            "question": "How do you access a dictionary value?",
+            "options": ["A) dictionary.value()", "B) dictionary.key()", "C) dictionary['key']", "D) dictionary['value']"],
+            "answer": "C",
+            "explanation": "The proper syntax is dictionary['key']"
+        },
+        {
+            "question": "How to initialize a tuple?",
+            "options": ["A) tuple = {a, b, c}", "B) tuple = [a, b, c]", "C) tuple = (a, b, c)", "D) tuple = a + b + c"],
+            "answer": "C",
+            "explanation": "The proper syntax for creating a tuple is with paranthesis"
+        },
+        {
+            "question": "How do you check if an item is in a collection?",
+            "options": ["A) in", "B) is in", "C) contains", "D) =="],
+            "answer": "A",
+            "explanation": "The syntax for checking if an item is in something is 'item in collection'"
+        },
+        {
+            "question": "What do you use to make multi-line comment?",
+            "options": ["A) #", "B) /**\ ", "C) \"\"\" ", "D) comment"],
+            "answer": "C",
+            "explanation": "The others are either not in python syntax or are a comment for one line"
+        },
+        {
+            "question": "What value does a function return if you don't specify?",
+            "options": ["A) null", "B) None", "C) False", "D) \"\" "],
+            "answer": "B",
+            "explanation": "None is the default return type"
+        },
+        {
+            "question": "What are the key words for if-else statements?",
+            "options": ["A) if-else if-else", "B) if-elif-el", "C) if-if not-otherwise", "D) if-elif-else"],
+            "answer": "D",
+            "explanation": "You are wrong"
+        },
+        {
+            "question": "How do you cast a variable as an integer?",
+            "options": ["A) variable.int", "B) (int)variable", "C) variable = integer.variable", "D) int(variable)"],
+            "answer": "D",
+            "explanation": "Functions for casting are type(variable)"
+        },
         # TODO: Add 9 more questions covering:
         # - Python syntax and indentation
         # - Data types (strings, lists, dictionaries)
@@ -178,6 +232,14 @@ def run_quiz(questions):
     print("Enter A, B, C, or D for each question.\n")
     input("Press Enter to start...")
     
+
+    for index, question in enumerate(questions):
+        display_question(question, index, len(questions))
+        user_answer = get_user_answer()
+        is_correct = check_answer(question, user_answer)
+        display_feedback(question, user_answer, is_correct)
+        if is_correct:
+            score += 1
     # TODO: Implement the game loop
     # Hint: Use a for loop with enumerate
     
@@ -207,6 +269,17 @@ def calculate_grade(score, total):
         Letter grade as string
     """
     # TODO: Calculate percentage and return grade
+    percent = (score/total)*100
+    if percent >= 90:
+        return "A"
+    elif percent >= 80:
+        return "B"
+    elif percent >= 70:
+        return "C"
+    elif percent >= 60:
+        return "D"
+    else:
+        return "F"
     pass
 
 
@@ -223,6 +296,16 @@ def display_results(score, total):
     # TODO: Calculate percentage and grade
     # TODO: Display formatted results
     # TODO: Add encouragement message
+    print (f"Score: {score}/{total}")
+    print (f"Percent: {(score/total)*100}")
+    letter_grade = calculate_grade(score, total)
+    print (f"Letter grade {letter_grade}")
+    if letter_grade in ["A", "B"]:
+        print("Give yourself a pat on the back")
+    if letter_grade in ["C"]:
+        print("You did ok, keep trying")
+    if letter_grade in ["D", "F"]:
+        print("You tried, good effort, its not your time")
     pass
 
 
