@@ -351,7 +351,6 @@ def main():
     high_score = 0
     # Create question bank
     questions = create_question_bank()
-    random.shuffle(questions)
     
     # Run the quiz
     score, total = run_quiz(questions)
