@@ -1,0 +1,9 @@
+﻿* Imported Colorama library, which is not a default system library, and it’s not in requirements.txt
+* Syntax warning on Line 88 "options": ["A) #", "B) /**\ ", "C) \"\"\" ", "D) comment"],
+   * May need to be “\\” instead of single “\” or a difference in python versions or maybe how code interacts with 3.14 vs 3.12
+* Code doesn’t display explanation if the user is correct in display_feedback()
+* Code logic is clear and easy to follow, but there is a lack of comments, which could make things even easier
+* Doesn’t affect how it runs, but left a “pass” in get_user_answer(), check_answer(question, user_answer), display_question(question, number, total), calculate_grade(score, total), and display_results(score, total)
+* Good, descriptive variable names
+* Difference in design choice: I would’ve displayed the high score vs your score every iteration instead of just printing it when you left the game
+* Something I liked: they only imported shuffle reducing the clutter from importing an entire module (wish we had done this with our imports)
